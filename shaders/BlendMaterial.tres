@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=7 format=3 uid="uid://d01vvjos64h8u"]
+
+[ext_resource type="Shader" path="res://shaders/BlendTextures.gdshader" id="1_ouulc"]
+[ext_resource type="Texture2D" path="res://textures/grass/rgba-compose.dds" id="2_q5m3s"]
+[ext_resource type="Texture2D" path="res://textures/gravel/rgba-compose1.dds" id="3_6u74x"]
+[ext_resource type="Texture2D" uid="uid://bumks73danoj8" path="res://models/terrain/BlendMap.png" id="4_hd15d"]
+[ext_resource type="Texture2D" uid="uid://c2cw6hqddyy4r" path="res://textures/grass/brown_mud_leaves_01_nor_gl_4k.jpg" id="5_fv2pw"]
+[ext_resource type="Texture2D" uid="uid://33kb1y7dmwmx" path="res://textures/gravel/brown_mud_rocks_01_nor_gl_4k.jpg" id="6_wyfj6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ouulc")
+shader_parameter/UVFactor1 = 10.0
+shader_parameter/UVFactor2 = 10.0
+shader_parameter/UVFactor3 = 10.0
+shader_parameter/Metal1 = 0.0
+shader_parameter/Metal2 = 0.0
+shader_parameter/Metal3 = 0.0
+shader_parameter/Spec1 = 0.0
+shader_parameter/Spec2 = 0.0
+shader_parameter/Spec3 = 0.0
+shader_parameter/AlbedoRough1 = ExtResource("2_q5m3s")
+shader_parameter/AlbedoRough2 = ExtResource("3_6u74x")
+shader_parameter/Normal1 = ExtResource("5_fv2pw")
+shader_parameter/Normal2 = ExtResource("6_wyfj6")
+shader_parameter/BlendMap = ExtResource("4_hd15d")
