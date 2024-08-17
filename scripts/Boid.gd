@@ -13,7 +13,7 @@ class_name Boid extends CharacterBody3D
 var behaviors = [] 
 var count_neighbors = false
 var neighbors = [] 
-var school = null
+var flock = null
 var new_force = Vector3.ZERO
 var should_calculate = false
 
@@ -22,7 +22,7 @@ var should_calculate = false
 func _ready():
 	# Check for a variable
 	if "partition" in get_parent():
-		school = get_parent()
+		flock = get_parent()
 	
 	for i in get_child_count():
 		var child = get_child(i)
@@ -30,12 +30,12 @@ func _ready():
 			behaviors.push_back(child)
 			child.set_process(child.enabled) 
 	# enable_all(false)
-	print(behaviors.size())
+	print("Behaviors count:", " ", behaviors.size())
 
 func _process(delta):
 	should_calculate = true
 	# pause = false
-	if school and count_neighbors:
+	if flock and count_neighbors:
 		count_neighbors_simple()
 
 func _physics_process(delta):
@@ -62,11 +62,11 @@ func _physics_process(delta):
 	
 func count_neighbors_simple():
 	neighbors.clear()
-	for i in school.boids.size():
-		var boid = school.boids[i]
-		if boid != self and global_transform.origin.distance_to(boid.global_transform.origin) < school.neighbor_distance:
+	for i in flock.boids.size():
+		var boid = flock.boids[i]
+		if boid != self and global_transform.origin.distance_to(boid.global_transform.origin) < flock.neighbor_distance:
 			neighbors.push_back(boid)
-			if neighbors.size() == school.max_neighbors:
+			if neighbors.size() == flock.max_neighbors:
 				break
 	return neighbors.size()
 

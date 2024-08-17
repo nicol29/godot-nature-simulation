@@ -3,6 +3,9 @@ class_name Flock extends Node
 @export var duck:PackedScene
 @export var duck_count: int = 50
 
+@export var neighbor_distance = 5
+@export var max_neighbors = 10
+
 var boids = []
 
 @export var partition = false
