@@ -5,8 +5,8 @@ class_name Boid extends CharacterBody3D
 @export var acceleration = Vector3.ZERO
 @export var vel = Vector3.ZERO
 @export var speed:float
-@export var max_speed: float = 10.0
-@export var max_force = 10
+@export var max_speed: float = 5.0
+@export var max_force = 5
 @export var damping = 0.1
 @export var pause = false
 
@@ -30,7 +30,6 @@ func _ready():
 			behaviors.push_back(child)
 			child.set_process(child.enabled) 
 	# enable_all(false)
-	print("Behaviors count:", " ", behaviors.size())
 
 func _process(delta):
 	should_calculate = true

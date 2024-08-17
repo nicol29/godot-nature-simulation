@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmuqp04d6xjc8"]
+[gd_scene load_steps=8 format=3 uid="uid://cmuqp04d6xjc8"]
 
 [ext_resource type="Script" path="res://scripts/Boid.gd" id="1_wp5h3"]
 [ext_resource type="Script" path="res://scripts/Seperation.gd" id="2_ksyn1"]
+[ext_resource type="Script" path="res://scripts/Alignment.gd" id="3_cyb8b"]
 [ext_resource type="Script" path="res://scripts/Cohesion.gd" id="3_ido1j"]
+[ext_resource type="Script" path="res://scripts/Constrain.gd" id="5_5olth"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_70fdd"]
 
@@ -22,5 +24,13 @@ shape = SubResource("BoxShape3D_ipww4")
 [node name="Seperation" type="Node" parent="."]
 script = ExtResource("2_ksyn1")
 
+[node name="Alignment" type="Node" parent="."]
+script = ExtResource("3_cyb8b")
+
 [node name="Cohesion" type="Node" parent="."]
 script = ExtResource("3_ido1j")
+
+[node name="Constrain" type="Node" parent="."]
+script = ExtResource("5_5olth")
+
+[node name="Avoidance" type="Node" parent="."]
