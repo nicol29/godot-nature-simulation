@@ -5,8 +5,8 @@ class_name Boid extends CharacterBody3D
 @export var acceleration = Vector3.ZERO
 @export var vel = Vector3.ZERO
 @export var speed:float
-@export var max_speed: float = 5.0
-@export var max_force = 5
+@export var max_speed: float = .5
+@export var max_force = 2
 @export var damping = 0.1
 @export var pause = false
 
@@ -29,7 +29,7 @@ func _ready():
 		if child.has_method("calculate"):
 			behaviors.push_back(child)
 			child.set_process(child.enabled) 
-	# enable_all(false)
+
 
 func _process(delta):
 	should_calculate = true
@@ -72,7 +72,8 @@ func count_neighbors_simple():
 func _input(event):
 	if event is InputEventKey and event.keycode == KEY_P and event.pressed:
 		pause = ! pause
-		
+
+
 func set_enabled(behavior, enabled):
 	behavior.enabled = enabled
 	behavior.set_process(enabled)
