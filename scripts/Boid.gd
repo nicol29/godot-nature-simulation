@@ -10,12 +10,16 @@ class_name Boid extends CharacterBody3D
 @export var damping = 0.1
 @export var pause = false
 
+
 var behaviors = [] 
 var count_neighbors = false
 var neighbors = [] 
 var flock = null
 var new_force = Vector3.ZERO
 var should_calculate = false
+
+
+var is_touching_water: bool
 
 
 # Called when the node enters the scene tree for the first time.
@@ -36,6 +40,9 @@ func _process(delta):
 	# pause = false
 	if flock and count_neighbors:
 		count_neighbors_simple()
+	
+	is_touching_water = detect_if_touching_water()
+
 
 func _physics_process(delta):
 	# pause = true
@@ -124,24 +131,15 @@ func calculate():
 	return force_acc
 
 
-#func count_neighbors_partitioned():
-	#neighbors.clear()
-	## var cells_around = 1
-	#var my_cell = school.position_to_cell(transform.origin)
-						#
-	## Check center cell first!
-	#for slice in [0, -1, 1]:
-		#for row in [0, -1, 1]:
-			#for col in [0, -1, 1]:
-				#var pos = global_transform.origin + Vector3(col * school.cell_size, row * school.cell_size, slice * school.cell_size)
-				#var key = school.position_to_cell(pos)
-				#
-				#if school.cells.has(key):
-					#var cell = school.cells[key]
-					## print(key)
-					#for boid in cell:
-						#if boid != self and boid.global_transform.origin.distance_to(global_transform.origin) < school.neighbor_distance:
-							#neighbors.push_back(boid)
-							#if neighbors.size() == school.max_neighbors:
-								#return neighbors.size()					
-	#return neighbors.size()
+func detect_if_touching_water() -> bool:
+	# Extending a ray from the duck's pos to check if it is in water
+	var from = self.global_transform.origin
+	var to = from - Vector3(0, 0.5, 0) 
+	var query = PhysicsRayQueryParameters3D.create(from, to, self.collision_mask)
+	var space_state = get_world_3d().direct_space_state
+	var result = space_state.intersect_ray(query)
+	
+	# Checking if the
+	if result and result.collider.is_in_group("water"):
+		return true
+	return false

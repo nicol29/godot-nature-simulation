@@ -1,6 +1,6 @@
 class_name StateMachine extends Node
 
-var initial_state = assign_random_state()
+var initial_state
 @export var global_state_path:NodePath
 
 var current_state:State
@@ -12,16 +12,17 @@ var boid
 	
 func _ready():
 	boid = get_parent()
+	initial_state = assign_random_state()
+	
 	if initial_state:
-		current_state = get_node(initial_state)
+		current_state = initial_state
 		current_state.call_deferred("_enter")
-		# current_state._enter()
+		current_state._enter()
 	if global_state_path:
 		global_state = get_node(global_state_path)
 		# Ready may not have been called!
 		global_state.call_deferred("_enter")
 		# current_state._enter()
-	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -47,10 +48,10 @@ func should_change_state() -> bool:
 
 func assign_random_state():
 	var state_weights = {
-		"SwimFlockState": 0.6,   # 60% chance
-		"ShoreFlockState": 0.2,  # 20% chance
-		"MoveToShoreState": 0.1, # 10% chance
-		"RestState": 0.1         # 10% chance
+		boid.get_node("Swim"): 1,   # 60% chance
+		#"ShoreFlockState": 0.2,  # 20% chance
+		#"MoveToShoreState": 0.1, # 10% chance
+		#"RestState": 0.1         # 10% chance
 	}
 
 	var rand_value = randf()
