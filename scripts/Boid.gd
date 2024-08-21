@@ -32,7 +32,7 @@ func _ready():
 		var child = get_child(i)
 		if child.has_method("calculate"):
 			behaviors.push_back(child)
-			child.set_process(child.enabled) 
+			child.set_process(child.enabled)
 
 
 func _process(delta):
@@ -54,6 +54,7 @@ func _physics_process(delta):
 	if ! pause:
 		acceleration = force / mass
 		vel += acceleration * delta
+		
 		speed = vel.length()
 		if speed > 0:		
 			if max_speed == 0:
@@ -63,6 +64,7 @@ func _physics_process(delta):
 			# Damping
 			vel -= vel * delta * damping
 			
+			look_at(vel.normalized(), Vector3(0, 1, 0))
 			set_velocity(vel)
 			move_and_slide()
 	
@@ -132,14 +134,14 @@ func calculate():
 
 
 func detect_if_touching_water() -> bool:
-	# Extending a ray from the duck's pos to check if it is in water
+	# Extend a ray from the duck's pos to check if it is in water
 	var from = self.global_transform.origin
 	var to = from - Vector3(0, 0.5, 0) 
 	var query = PhysicsRayQueryParameters3D.create(from, to, self.collision_mask)
 	var space_state = get_world_3d().direct_space_state
 	var result = space_state.intersect_ray(query)
 	
-	# Checking if the
+	# Check if the collider's group name is "water"
 	if result and result.collider.is_in_group("water"):
 		return true
 	return false

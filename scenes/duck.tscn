@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://cmuqp04d6xjc8"]
+[gd_scene load_steps=11 format=3 uid="uid://cmuqp04d6xjc8"]
 
 [ext_resource type="Script" path="res://scripts/Boid.gd" id="1_wp5h3"]
 [ext_resource type="Script" path="res://scripts/Seperation.gd" id="2_ksyn1"]
+[ext_resource type="PackedScene" uid="uid://kd8f4b60m88r" path="res://models/duck/scene.gltf" id="2_whh2e"]
 [ext_resource type="Script" path="res://scripts/Alignment.gd" id="3_cyb8b"]
 [ext_resource type="Script" path="res://scripts/Cohesion.gd" id="3_ido1j"]
 [ext_resource type="Script" path="res://scripts/Constrain.gd" id="5_5olth"]
@@ -14,6 +15,46 @@
 
 [node name="Duck" type="CharacterBody3D"]
 script = ExtResource("1_wp5h3")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("2_whh2e")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/6bc100fb61f54a5790307f0e271aa0b2_fbx/Object_2/RootNode/Arm_duck/Object_5" index="0"]
+bones/1/rotation = Quaternion(0.707107, 0, 0, 0.707107)
+bones/2/rotation = Quaternion(1.5312e-06, 0.68634, 0.727281, 1.44529e-06)
+bones/2/scale = Vector3(1, 1, 1)
+bones/4/rotation = Quaternion(1.87855e-06, 0.68634, 0.727281, 1.77314e-06)
+bones/4/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(0, 3.06165, 0)
+bones/6/rotation = Quaternion(-9.81762e-10, 1.38715e-26, -3.07626e-24, 1)
+bones/7/rotation = Quaternion(0.280341, 0.544003, 0.684105, -0.396825)
+bones/7/scale = Vector3(1, 1, 1)
+bones/11/rotation = Quaternion(-0.812309, -0.051704, -0.037107, 0.579744)
+bones/11/scale = Vector3(1, 1, 1)
+bones/13/rotation = Quaternion(-0.812322, 0.0518995, 0.036833, 0.579727)
+bones/13/scale = Vector3(1, 1, 1)
+bones/15/rotation = Quaternion(0.698815, 9.8857e-06, 9.65783e-06, 0.715303)
+bones/15/scale = Vector3(1, 1, 1)
+bones/16/rotation = Quaternion(-0.707811, -9.76268e-06, -9.78216e-06, 0.706402)
+bones/16/scale = Vector3(1, 1, 1)
+bones/17/rotation = Quaternion(1.56655e-08, 0.998108, 0.0614802, 1.34375e-07)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/rotation = Quaternion(-0.741777, 1.94387e-12, 2.88861e-07, 0.670647)
+bones/19/rotation = Quaternion(-0.0192328, 3.17807e-08, 6.87822e-09, 0.999815)
+bones/21/rotation = Quaternion(-0.0963219, -1.18655e-07, 4.89916e-08, 0.99535)
+bones/24/rotation = Quaternion(0.0418394, 4.31799e-32, -6.35078e-34, 0.999124)
+bones/25/rotation = Quaternion(0.166411, 2.69006e-32, -2.76297e-32, 0.986056)
+bones/27/rotation = Quaternion(-0.145007, -0.394588, 0.876642, -0.234037)
+bones/27/scale = Vector3(1, 1, 1)
+bones/28/rotation = Quaternion(-0.214805, -0.664553, 0.694672, 0.172218)
+bones/28/scale = Vector3(1, 1, 1)
+bones/29/rotation = Quaternion(-1.43656e-07, 0.889202, -0.457515, -7.58358e-08)
+bones/31/rotation = Quaternion(0.0729051, -0.374149, 0.885558, 0.26549)
+bones/31/scale = Vector3(1, 1, 1)
+bones/32/rotation = Quaternion(0.157336, -0.648262, 0.709899, -0.225934)
+bones/32/scale = Vector3(1, 1, 1)
+bones/33/rotation = Quaternion(-5.89614e-08, 0.889202, -0.457514, -1.19413e-07)
+bones/33/scale = Vector3(1, 1, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.3, 0, -4.57379e-24, -4.57379e-24, -2.62268e-08, -0.3, 0, 0.6, -1.31134e-08, 0, 0, 0)
@@ -42,3 +83,7 @@ script = ExtResource("6_lnccv")
 
 [node name="Swim" type="Node" parent="."]
 script = ExtResource("7_fklkb")
+
+[node name="SwimToShore" type="Node" parent="."]
+
+[editable path="Sketchfab_Scene"]

@@ -1,0 +1,8 @@
+Model Information:
+* title:	Duck
+* source:	https://sketchfab.com/3d-models/duck-07b9786ed84244b2acefd48c709e4548
+* author:	Chester9292 (https://sketchfab.com/Chester9292)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

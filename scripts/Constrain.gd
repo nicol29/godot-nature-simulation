@@ -1,6 +1,6 @@
 class_name Constrain extends SteeringBehavior
 
-@export var radius:float = 10
+@export var radius:float = 20
 
 @export var center_path:NodePath
 

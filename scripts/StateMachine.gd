@@ -17,12 +17,12 @@ func _ready():
 	if initial_state:
 		current_state = initial_state
 		current_state.call_deferred("_enter")
-		current_state._enter()
+		#current_state._enter()
 	if global_state_path:
 		global_state = get_node(global_state_path)
 		# Ready may not have been called!
 		global_state.call_deferred("_enter")
-		# current_state._enter()
+		#current_state._enter()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -42,7 +42,6 @@ func change_state(new_state):
 		current_state._enter()
 
 func should_change_state() -> bool:
-	# Implement your timing or random logic here
 	return randf() < 0.01  # Example: 1% chance per frame to change state
 
 
