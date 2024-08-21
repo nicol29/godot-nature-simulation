@@ -1,10 +1,10 @@
 class_name Flock extends Node
 
 @export var duck:PackedScene
-@export var duck_count: int = 50
+@export var duck_count: int = 35
 
-@export var neighbor_distance = 5
-@export var max_neighbors = 10
+@export var neighbor_distance = 20
+@export var max_neighbors = 5
 
 var boids = []
 
@@ -12,7 +12,7 @@ var boids = []
 
 @export var LakeSpawnPoint:NodePath
 @export var lake_spawn_chance: float = 0.8
-@export var LakeRadiusSpawn: int = 20
+@export var LakeRadiusSpawn: int = 25
 @export var ShoreRadiusSpawn: int = 4
 
 var shore_spawn_points = []

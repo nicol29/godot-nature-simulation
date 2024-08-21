@@ -6,7 +6,7 @@ static func get_random_position_inside_circle(center: Vector3, radius: float) ->
 	var distance = randf() * radius
 	var position = Vector3(
 		center.x + cos(angle) * distance,
-		center.y,  # Assuming y is the water level
+		center.y,  
 		center.z + sin(angle) * distance
 	)
 	return position

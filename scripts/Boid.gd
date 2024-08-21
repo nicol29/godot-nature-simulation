@@ -5,7 +5,7 @@ class_name Boid extends CharacterBody3D
 @export var acceleration = Vector3.ZERO
 @export var vel = Vector3.ZERO
 @export var speed:float
-@export var max_speed: float = .5
+@export var max_speed: float = 0.5
 @export var max_force = 2
 @export var damping = 0.1
 @export var pause = false
@@ -55,6 +55,9 @@ func _physics_process(delta):
 		acceleration = force / mass
 		vel += acceleration * delta
 		
+		# Constrain velocity to the XZ plane
+		vel.y = 0
+		
 		speed = vel.length()
 		if speed > 0:		
 			if max_speed == 0:
@@ -64,9 +67,11 @@ func _physics_process(delta):
 			# Damping
 			vel -= vel * delta * damping
 			
-			look_at(vel.normalized(), Vector3(0, 1, 0))
 			set_velocity(vel)
 			move_and_slide()
+			
+			var smoothed_direction = lerp(-global_transform.basis.z, vel, 0.1)
+			look_at(global_transform.origin - vel.normalized(), Vector3.UP)
 	
 func count_neighbors_simple():
 	neighbors.clear()
@@ -78,17 +83,13 @@ func count_neighbors_simple():
 				break
 	return neighbors.size()
 
-func _input(event):
-	if event is InputEventKey and event.keycode == KEY_P and event.pressed:
-		pause = ! pause
-
-
 func set_enabled(behavior, enabled):
 	behavior.enabled = enabled
 	behavior.set_process(enabled)
 
 func seek_force(target: Vector3):	
 	var toTarget = target - global_transform.origin
+	toTarget.y = 0
 	toTarget = toTarget.normalized()
 	var desired = toTarget * max_speed
 	return desired - vel
@@ -96,7 +97,7 @@ func seek_force(target: Vector3):
 func arrive_force(target:Vector3, slowingDistance:float):
 	var toTarget = target - global_transform.origin
 	var dist = toTarget.length()
-	
+	toTarget.y = 0
 	if dist < 2:
 		return Vector3.ZERO
 	

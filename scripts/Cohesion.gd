@@ -18,5 +18,6 @@ func calculate():
 		center_of_mass += other.global_transform.origin
 	if boid.neighbors.size() > 0:
 		center_of_mass /= boid.neighbors.size()
+		center_of_mass.y = boid.global_transform.origin.y
 		force = boid.seek_force(center_of_mass).normalized()
 	return force
