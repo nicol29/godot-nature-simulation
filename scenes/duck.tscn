@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Boid.gd" id="1_wp5h3"]
 [ext_resource type="Script" path="res://scripts/Seperation.gd" id="2_ksyn1"]
-[ext_resource type="PackedScene" uid="uid://kd8f4b60m88r" path="res://models/duck/scene.gltf" id="2_whh2e"]
+[ext_resource type="PackedScene" path="res://models/duck/scene.gltf" id="2_whh2e"]
 [ext_resource type="Script" path="res://scripts/Alignment.gd" id="3_cyb8b"]
 [ext_resource type="Script" path="res://scripts/Cohesion.gd" id="3_ido1j"]
 [ext_resource type="Script" path="res://scripts/Constrain.gd" id="5_5olth"]
