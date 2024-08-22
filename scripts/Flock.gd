@@ -1,7 +1,7 @@
 class_name Flock extends Node
 
 @export var duck:PackedScene
-@export var duck_count: int = 35
+@export var duck_count: int = 1
 
 @export var neighbor_distance = 20
 @export var max_neighbors = 5
@@ -14,7 +14,6 @@ var boids = []
 @export var lake_spawn_chance: float = 0.8
 @export var LakeRadiusSpawn: int = 25
 @export var ShoreRadiusSpawn: int = 4
-
 var shore_spawn_points = []
 
 
@@ -28,7 +27,7 @@ func _ready():
 
 func spawn_ducks():
 	# Get the shore spawn points using Marker3D
-	var shore_spawn_points = get_children().filter(
+	shore_spawn_points = get_children().filter(
 		func(child):
 		return child is Marker3D and child.name.begins_with("ShoreSpawnPoint")
 	)

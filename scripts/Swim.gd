@@ -24,8 +24,10 @@ func timeout():
 
 func _enter():
 	duck_animation_player.play("Arm_duck|swim")
+	#print(boid.position)
 
 func _think():
+	#print("Swim", boid.position)
 	pass
 
 func constrain_to_water_level():

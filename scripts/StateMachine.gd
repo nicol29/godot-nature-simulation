@@ -31,6 +31,7 @@ func _process(delta):
 	if global_state:
 		global_state._think()
 
+
 func change_state(new_state):
 	print(str(boid) + "\t" + new_state.get_class())
 	if current_state:
@@ -47,8 +48,8 @@ func should_change_state() -> bool:
 
 func assign_random_state():
 	var state_weights = {
-		boid.get_node("Swim"): 1,   # 60% chance
-		#"ShoreFlockState": 0.2,  # 20% chance
+		#boid.get_node("Swim"): 0.5,   # 60% chance
+		boid.get_node("SwimToShore"): 1,  # 20% chance
 		#"MoveToShoreState": 0.1, # 10% chance
 		#"RestState": 0.1         # 10% chance
 	}
