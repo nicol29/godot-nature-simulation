@@ -13,7 +13,7 @@ func _ready():
 	timer = Timer.new()
 	add_child(timer)	
 	timer.wait_time = 1
-	timer.one_shot = false
+	timer.one_shot = true
 	timer.start()
 	timer.connect("timeout", Callable(self, "timeout"))	
 	

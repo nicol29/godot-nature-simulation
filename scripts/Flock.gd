@@ -11,7 +11,7 @@ var boids = []
 @export var partition = false
 
 @export var LakeSpawnPoint:NodePath
-@export var lake_spawn_chance: float = 0.8
+@export var lake_spawn_chance: float = 1
 @export var LakeRadiusSpawn: int = 25
 @export var ShoreRadiusSpawn: int = 4
 var shore_spawn_points = []

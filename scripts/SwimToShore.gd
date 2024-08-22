@@ -2,7 +2,7 @@ class_name SwimToShore extends State
 
 var boid
 var duck_animation_player: AnimationPlayer
-var random_shore_point: Marker3D
+var random_shore_point: Vector3
 var shore_radius := 4
 var shore_spawn_points
 
@@ -31,7 +31,8 @@ func _enter():
 	
 	# Get a random shore point
 	var random_index = randi() % shore_spawn_points.size()
-	random_shore_point = shore_spawn_points[random_index]
+	random_shore_point = Utility.get_random_position_inside_circle(shore_spawn_points[random_index].global_transform.origin, 4)
+	print(random_shore_point)
 	
 	# Set seek behavior's target
 	var seek_behavior = boid.get_node("Seek")
@@ -44,11 +45,17 @@ func _think():
 		duck_animation_player.play("Arm_duck|walk")
 	
 	# Check if duck arrived then change state to a land state
-	if boid.global_transform.origin.distance_to(random_shore_point.global_transform.origin) < 0.1:
+	var distance_to_target = boid.global_transform.origin.distance_to(random_shore_point)
+
+	if distance_to_target < 2 and boid.vel.length() < 0.05:
+		print("Arrived")
 		boid.get_node("StateMachine").change_state(Sleep.new())
 
 func _exit():
-	pass
+	boid.set_enabled(boid.get_node("Seek"), false)
+	
+	boid.vel = Vector3.ZERO
+	boid.force = Vector3.ZERO
 
 func constrain_to_water_level():
 	# Constrain the y-coordinate to the water level
