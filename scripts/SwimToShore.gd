@@ -28,16 +28,16 @@ func _enter():
 	for i in boid.behaviors.size():
 		if not boid.behaviors[i] is Seek:
 			boid.set_enabled(boid.behaviors[i], false)
+		else:
+			boid.set_enabled(boid.behaviors[i], true)
 	
 	# Get a random shore point
 	var random_index = randi() % shore_spawn_points.size()
 	random_shore_point = Utility.get_random_position_inside_circle(shore_spawn_points[random_index].global_transform.origin, 4)
-	print(random_shore_point)
 	
 	# Set seek behavior's target
 	var seek_behavior = boid.get_node("Seek")
 	seek_behavior.set_target(random_shore_point)
-	seek_behavior.call_deferred("calculate")
 
 func _think():
 	# Check if duck is on land and if so switch to walk animation
@@ -49,7 +49,7 @@ func _think():
 
 	if distance_to_target < 2 and boid.vel.length() < 0.05:
 		print("Arrived")
-		boid.get_node("StateMachine").change_state(Sleep.new())
+		boid.get_node("StateMachine").change_state(Walk.new())
 
 func _exit():
 	boid.set_enabled(boid.get_node("Seek"), false)
