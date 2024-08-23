@@ -13,7 +13,6 @@ func _ready():
 	wander_target = Utility.random_point_in_unit_disk() * 2
 
 func calculate():		
-	print(wander_target, target)
 	var delta = get_process_delta_time()
 	var disp = jitter * Utility.random_point_in_unit_disk() * delta
 	wander_target += disp

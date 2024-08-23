@@ -1,8 +1,8 @@
-class_name SwimToShore extends State
+class_name ReturnToPond extends State
 
 var boid
 var duck_animation_player: AnimationPlayer
-var random_shore_point: Vector3
+var lake_point: Marker3D
 var shore_radius := 4
 var shore_spawn_points
 
@@ -12,17 +12,14 @@ func _ready():
 	boid = get_parent()
 	
 	# Get the shore spawn points
-	shore_spawn_points = get_node("../../").get_children().filter(
-		func(child):
-		return child is Marker3D and child.name.begins_with("ShoreSpawnPoint")
-	)
+	lake_point = get_node("../../LakeSpawnPoint")
 	
 	# Get the animation player
 	duck_animation_player = get_node("../Sketchfab_Scene/AnimationPlayer")
 
 func _enter():
 	# Play swim animation
-	duck_animation_player.play("Arm_duck|swim")
+	duck_animation_player.play("Arm_duck|walk")
 	
 	# Disable flocking and other behaviors unless it's seek
 	for behavior in boid.behaviors:
@@ -31,24 +28,21 @@ func _enter():
 		else:
 			boid.set_enabled(behavior, true)
 	
-	# Get a random shore point
-	var random_index = randi() % shore_spawn_points.size()
-	random_shore_point = Utility.get_random_position_inside_circle(shore_spawn_points[random_index].global_transform.origin, 4)
-	
 	# Set seek behavior's target
 	var seek_behavior = boid.get_node("Seek")
-	seek_behavior.set_target(random_shore_point)
+	seek_behavior.set_target(lake_point.global_transform.origin)
 
 func _think():
-	# Check if duck is on land and if so switch to walk animation
-	if not boid.is_touching_water and duck_animation_player.current_animation != "Arm_duck|walk":
-		duck_animation_player.play("Arm_duck|walk")
+	# Check if duck is in water and if so switch to swim animation
+	if boid.is_touching_water and duck_animation_player.current_animation != "Arm_duck|swim":
+		duck_animation_player.play("Arm_duck|swim")
 	
 	# Check if duck arrived then change state to a land state
-	var distance_to_target = boid.global_transform.origin.distance_to(random_shore_point)
+	var distance_to_target = boid.global_transform.origin.distance_to(lake_point.global_transform.origin)
 
-	if distance_to_target < 2 and boid.vel.length() < 0.05:
-		boid.get_node("StateMachine").change_state(ReturnToPond.new())
+	if distance_to_target < 15:
+		print("Arrived, now change state to swim")
+		boid.get_node("StateMachine").change_state(Swim.new())
 
 func _exit():
 	boid.set_enabled(boid.get_node("Seek"), false)

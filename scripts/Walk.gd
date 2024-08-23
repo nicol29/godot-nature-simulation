@@ -3,9 +3,6 @@ class_name Walk extends State
 var boid
 var timer
 var duck_animation_player: AnimationPlayer
-var random_shore_point: Vector3
-var shore_radius := 4
-var shore_spawn_points
 var roaming_area: Vector3
 
 
@@ -28,11 +25,11 @@ func timeout():
 
 func _enter():
 	# Disable flocking and other behaviors unless it's wander
-	for i in boid.behaviors.size():
-		if not boid.behaviors[i] is Wander:
-			boid.set_enabled(boid.behaviors[i], false)
+	for behavior in boid.behaviors:
+		if not behavior is Wander:
+			boid.set_enabled(behavior, false)
 		else:
-			boid.set_enabled(boid.behaviors[i], true)
+			boid.set_enabled(behavior, true)
 			
 	# Play walk animation
 	duck_animation_player.play("Arm_duck|walk")

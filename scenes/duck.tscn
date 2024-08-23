@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cmuqp04d6xjc8"]
+[gd_scene load_steps=17 format=3 uid="uid://cmuqp04d6xjc8"]
 
 [ext_resource type="Script" path="res://scripts/Boid.gd" id="1_wp5h3"]
 [ext_resource type="Script" path="res://scripts/Seperation.gd" id="2_ksyn1"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/StateSwitcher.gd" id="9_kv2bf"]
 [ext_resource type="Script" path="res://scripts/Sleep.gd" id="10_5mvcb"]
 [ext_resource type="Script" path="res://scripts/Walk.gd" id="11_8hanl"]
+[ext_resource type="Script" path="res://scripts/ReturnToPond.gd" id="14_tg62x"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_70fdd"]
 
@@ -26,11 +27,11 @@ transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, -0.144595, 0)
 
 [node name="Skeleton3D" parent="Sketchfab_Scene/Sketchfab_model/6bc100fb61f54a5790307f0e271aa0b2_fbx/Object_2/RootNode/Arm_duck/Object_5" index="0"]
 bones/1/rotation = Quaternion(0.707107, 0, 0, 0.707107)
-bones/2/rotation = Quaternion(1.5312e-06, 0.68634, 0.727281, 1.44529e-06)
+bones/2/rotation = Quaternion(1.55074e-06, 0.68634, 0.727281, 1.466e-06)
 bones/2/scale = Vector3(1, 1, 1)
-bones/4/rotation = Quaternion(1.87855e-06, 0.68634, 0.727281, 1.77314e-06)
+bones/4/rotation = Quaternion(1.84499e-06, 0.68634, 0.727281, 1.73759e-06)
 bones/4/scale = Vector3(1, 1, 1)
-bones/6/position = Vector3(0, 3.06374, 0)
+bones/6/position = Vector3(0, 3.06165, 0)
 bones/6/rotation = Quaternion(-9.81762e-10, 1.38715e-26, -3.07626e-24, 1)
 bones/7/rotation = Quaternion(0.280341, 0.544003, 0.684105, -0.396825)
 bones/7/scale = Vector3(1, 1, 1)
@@ -40,25 +41,24 @@ bones/13/rotation = Quaternion(-0.812322, 0.0518996, 0.036833, 0.579727)
 bones/13/scale = Vector3(1, 1, 1)
 bones/15/rotation = Quaternion(0.698815, 9.8857e-06, 9.65783e-06, 0.715303)
 bones/15/scale = Vector3(1, 1, 1)
-bones/16/rotation = Quaternion(-0.707811, -0.000211431, 0.00162228, 0.7064)
+bones/16/rotation = Quaternion(-0.707811, -9.76268e-06, -9.78216e-06, 0.706402)
 bones/16/scale = Vector3(1, 1, 1)
 bones/17/rotation = Quaternion(1.56655e-08, 0.998108, 0.0614802, 1.34375e-07)
 bones/17/scale = Vector3(1, 1, 1)
-bones/18/rotation = Quaternion(-0.739578, 9.47336e-10, 2.88859e-07, 0.673071)
+bones/18/rotation = Quaternion(-0.741776, 2.00493e-12, 2.88861e-07, 0.670647)
 bones/19/rotation = Quaternion(-0.0192328, 3.17807e-08, 6.87822e-09, 0.999815)
-bones/21/rotation = Quaternion(-0.0963856, -1.18658e-07, 4.8984e-08, 0.995344)
-bones/24/rotation = Quaternion(0.0427197, -1.06457e-31, 3.39025e-32, 0.999087)
-bones/25/rotation = Quaternion(0.154201, 1.46805e-32, 6.54722e-33, 0.988039)
+bones/21/rotation = Quaternion(-0.0963219, -1.18655e-07, 4.89916e-08, 0.99535)
+bones/25/rotation = Quaternion(0.166411, -2.50353e-24, -6.29158e-25, 0.986056)
 bones/27/rotation = Quaternion(-0.145007, -0.394588, 0.876642, -0.234037)
 bones/27/scale = Vector3(1, 1, 1)
-bones/28/rotation = Quaternion(-0.214942, -0.665103, 0.694145, 0.172048)
+bones/28/rotation = Quaternion(-0.214805, -0.664553, 0.694672, 0.172218)
 bones/28/scale = Vector3(1, 1, 1)
-bones/29/rotation = Quaternion(-1.43587e-07, 0.889618, -0.456705, -7.59665e-08)
+bones/29/rotation = Quaternion(-1.43656e-07, 0.889202, -0.457515, -7.58358e-08)
 bones/31/rotation = Quaternion(0.0729051, -0.374149, 0.885558, 0.26549)
 bones/31/scale = Vector3(1, 1, 1)
-bones/32/rotation = Quaternion(0.157497, -0.648769, 0.709435, -0.225821)
+bones/32/rotation = Quaternion(0.157336, -0.648262, 0.709899, -0.225934)
 bones/32/scale = Vector3(1, 1, 1)
-bones/33/rotation = Quaternion(-5.88527e-08, 0.889619, -0.456704, -1.19467e-07)
+bones/33/rotation = Quaternion(-5.89614e-08, 0.889202, -0.457514, -1.19413e-07)
 bones/33/scale = Vector3(1, 1, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -106,6 +106,9 @@ script = ExtResource("11_8hanl")
 
 [node name="StateSwitcher" type="Node" parent="."]
 script = ExtResource("9_kv2bf")
+
+[node name="ReturnToPond" type="Node" parent="."]
+script = ExtResource("14_tg62x")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-0.00250783, -0.0660997, 0.99781, -0.000166131, 0.997813, 0.0660995, -0.999997, -1.19732e-12, -0.00251333, 1.71134, 0.784075, 0)

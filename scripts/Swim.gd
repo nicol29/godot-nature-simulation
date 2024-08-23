@@ -10,24 +10,29 @@ var duck_animation_player: AnimationPlayer
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	boid = get_parent()
-	timer = Timer.new()
-	add_child(timer)	
-	timer.wait_time = 1
-	timer.one_shot = true
-	timer.start()
-	timer.connect("timeout", Callable(self, "timeout"))	
 	
 	duck_animation_player = get_node("../Sketchfab_Scene/AnimationPlayer")
 
-func timeout():
-	timer.wait_time = randf_range(0.2, 1)
-
 func _enter():
 	duck_animation_player.play("Arm_duck|swim")
-	#print(boid.position)
+	
+	# Enable flocking behavior when ducks are swimming
+	for behavior in boid.behaviors:
+		if behavior is Wander or behavior is Seek:
+		# Disable Wander and Seek
+			boid.set_enabled(behavior, false)
+		else:
+		# Enable other behaviors
+			boid.set_enabled(behavior, true)
 
 func _think():
-	#print("Swim", boid.position)
+	var current_speed = boid.vel.length()
+	
+	# Clamp the duck's swim animation speed based on it's vel
+	if duck_animation_player.is_playing():
+		duck_animation_player.speed_scale = clamp(current_speed, 0.2, 1.0)
+
+func _exit():
 	pass
 
 func constrain_to_water_level():
