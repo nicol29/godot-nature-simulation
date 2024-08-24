@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cmuqp04d6xjc8"]
+[gd_scene load_steps=22 format=3 uid="uid://cmuqp04d6xjc8"]
 
 [ext_resource type="Script" path="res://scripts/Boid.gd" id="1_wp5h3"]
 [ext_resource type="Script" path="res://scripts/Seperation.gd" id="2_ksyn1"]
@@ -14,6 +14,11 @@
 [ext_resource type="Script" path="res://scripts/Sleep.gd" id="10_5mvcb"]
 [ext_resource type="Script" path="res://scripts/Walk.gd" id="11_8hanl"]
 [ext_resource type="Script" path="res://scripts/ReturnToPond.gd" id="14_tg62x"]
+[ext_resource type="Script" path="res://scripts/Sound.gd" id="15_d6ws8"]
+[ext_resource type="AudioStream" uid="uid://bddpg3pooviy2" path="res://sounds/duck quacking sound effect.mp3" id="16_u47wf"]
+[ext_resource type="AudioStream" uid="uid://ccv21dbi4s8bd" path="res://sounds/Ducks Quacking Sound Effect Ringtone.mp3" id="17_ioh4q"]
+[ext_resource type="AudioStream" uid="uid://dolelivg6geky" path="res://sounds/Duck sound #shorts Please subscribe.mp3" id="19_862uj"]
+[ext_resource type="AudioStream" uid="uid://cxyuncrnrarws" path="res://sounds/Male Duck Quacking.mp3" id="20_3esge"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_70fdd"]
 
@@ -105,5 +110,32 @@ script = ExtResource("11_8hanl")
 
 [node name="ReturnToPond" type="Node" parent="."]
 script = ExtResource("14_tg62x")
+
+[node name="Sound" type="Node3D" parent="."]
+script = ExtResource("15_d6ws8")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Sound"]
+stream = ExtResource("16_u47wf")
+volume_db = 5.0
+doppler_tracking = 2
+metadata/source_url = &"https://www.youtube.com/watch?v=aFQoM1JhzQY"
+
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="Sound"]
+stream = ExtResource("17_ioh4q")
+volume_db = 5.0
+doppler_tracking = 2
+metadata/source_url = &"https://www.youtube.com/watch?v=2Xy9NjGfJZo"
+
+[node name="AudioStreamPlayer3D4" type="AudioStreamPlayer3D" parent="Sound"]
+stream = ExtResource("19_862uj")
+volume_db = 5.0
+doppler_tracking = 2
+metadata/source_url = &"https://www.youtube.com/shorts/rVEaanykP2I"
+
+[node name="AudioStreamPlayer3D5" type="AudioStreamPlayer3D" parent="Sound"]
+stream = ExtResource("20_3esge")
+volume_db = 5.0
+doppler_tracking = 2
+metadata/source_url = &"https://www.youtube.com/shorts/PF4XIHLYQRA"
 
 [editable path="Sketchfab_Scene"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cxyuncrnrarws"
+path="res://.godot/imported/Male Duck Quacking.mp3-25fcbd8fbaa51854ef6eefae208fa864.mp3str"
+
+[deps]
+
+source_file="res://sounds/Male Duck Quacking.mp3"
+dest_files=["res://.godot/imported/Male Duck Quacking.mp3-25fcbd8fbaa51854ef6eefae208fa864.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

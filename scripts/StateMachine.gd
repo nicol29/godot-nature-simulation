@@ -10,7 +10,7 @@ var state_change_timer
 
 var boid
 
-	
+
 func _ready():
 	boid = get_parent()
 	initial_state = assign_initial_state()
@@ -19,6 +19,7 @@ func _ready():
 		current_state = initial_state
 		current_state.call_deferred("_enter")
 		#current_state._enter()
+		
 	if global_state_path:
 		global_state = get_node(global_state_path)
 		# Ready may not have been called!
@@ -51,7 +52,6 @@ func assign_initial_state():
 			return boid.get_node("Walk")
 
 func change_state(new_state):
-	print(str(boid) + "\t" + new_state.get_class())
 	if current_state:
 		current_state._exit()
 		boid.call_deferred("remove_child", current_state);
