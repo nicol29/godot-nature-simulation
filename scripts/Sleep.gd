@@ -18,19 +18,25 @@ func _ready():
 func timeout():
 	duck_animation_player.play("Arm_duck|sleep_end")
 	
+	var random_value = randi() % 2 
+	if random_value == 0:
+		boid.get_node("StateMachine").change_state(Walk.new())
+	else:
+		boid.get_node("StateMachine").change_state(ReturnToPond.new())
 
 func _enter():
 	duck_animation_player.play("Arm_duck|sleep_start")
-	print("Entered sleep state")
-	   
-	var sleep_duration = randf_range(5, 10)
+	
+	# Disable boid movement went sleeping
+	boid.pause = true
+	
+	var sleep_duration = randf_range(45, 100)
 	timer.start(sleep_duration)
 
 func _think():
-	# Check if the animation has stopped playing
 	if not duck_animation_player.is_playing():
-		print("The walk animation has stopped playing.")
 		duck_animation_player.play("Arm_duck|sleep")
 
 func _exit():
-	pass
+	# Re-enable movement
+	boid.pause = false

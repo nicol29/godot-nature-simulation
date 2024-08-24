@@ -44,11 +44,16 @@ func _think():
 	if not boid.is_touching_water and duck_animation_player.current_animation != "Arm_duck|walk":
 		duck_animation_player.play("Arm_duck|walk")
 	
-	# Check if duck arrived then change state to a land state
 	var distance_to_target = boid.global_transform.origin.distance_to(random_shore_point)
-
+	
+	# If duck arrives swap to a random land state
 	if distance_to_target < 2 and boid.vel.length() < 0.05:
-		boid.get_node("StateMachine").change_state(ReturnToPond.new())
+		var random_value = randi() % 2 
+		
+		if random_value == 0:
+			boid.get_node("StateMachine").change_state(Walk.new())
+		else:
+			boid.get_node("StateMachine").change_state(Sleep.new())
 
 func _exit():
 	boid.set_enabled(boid.get_node("Seek"), false)

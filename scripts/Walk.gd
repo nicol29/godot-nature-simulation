@@ -49,9 +49,11 @@ func _think():
 		# Resume duck's movement
 		boid.pause = false
 		duck_animation_player.play("Arm_duck|walk")
+	
+	if boid.is_touching_water:
+		# Return the duck to pond if wandered into the water
+		boid.get_node("StateMachine").change_state(ReturnToPond.new())
 
 func _exit():
+	boid.pause = false
 	boid.set_enabled(boid.get_node("Wander"), false)
-	
-	#boid.vel = Vector3.ZERO
-	#boid.force = Vector3.ZERO

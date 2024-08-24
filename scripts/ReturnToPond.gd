@@ -41,7 +41,6 @@ func _think():
 	var distance_to_target = boid.global_transform.origin.distance_to(lake_point.global_transform.origin)
 
 	if distance_to_target < 15:
-		print("Arrived, now change state to swim")
 		boid.get_node("StateMachine").change_state(Swim.new())
 
 func _exit():

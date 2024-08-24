@@ -5,7 +5,7 @@ class_name Boid extends CharacterBody3D
 @export var acceleration = Vector3.ZERO
 @export var vel = Vector3.ZERO
 @export var speed:float
-@export var max_speed: float = 2
+@export var max_speed: float = 1
 @export var max_force = 5
 @export var damping = 0.1
 @export var pause = false
@@ -18,9 +18,8 @@ var flock = null
 var new_force = Vector3.ZERO
 var should_calculate = false
 
-
 var is_touching_water: bool
-
+var did_spawn_in_lake: bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
