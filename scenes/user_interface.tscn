@@ -31,7 +31,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -237.0
+offset_top = -260.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 20
@@ -71,15 +71,15 @@ layout_mode = 2
 max_value = 10.0
 value = 1.0
 
-[node name="Seperation" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
+[node name="Separation" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/ColorRect/MarginContainer/VBoxContainer/Seperation"]
+[node name="Label" type="Label" parent="Control/ColorRect/MarginContainer/VBoxContainer/Separation"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Seperation"
 
-[node name="SeperationSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/Seperation"]
+[node name="SeparationSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/Separation"]
 layout_mode = 2
 max_value = 10.0
 value = 1.0
@@ -98,7 +98,14 @@ layout_mode = 2
 max_value = 10.0
 value = 1.0
 
+[node name="Button" type="Button" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Reset Values
+"
+
 [connection signal="value_changed" from="Control/ColorRect/MarginContainer/VBoxContainer/Cohesion/CohesionSlider" to="Control" method="_on_cohesion_slider_value_changed"]
 [connection signal="value_changed" from="Control/ColorRect/MarginContainer/VBoxContainer/Alignment/AlignmentSlider" to="Control" method="_on_alignment_slider_value_changed"]
-[connection signal="value_changed" from="Control/ColorRect/MarginContainer/VBoxContainer/Seperation/SeperationSlider" to="Control" method="_on_seperation_slider_value_changed"]
+[connection signal="value_changed" from="Control/ColorRect/MarginContainer/VBoxContainer/Separation/SeparationSlider" to="Control" method="_on_seperation_slider_value_changed"]
 [connection signal="value_changed" from="Control/ColorRect/MarginContainer/VBoxContainer/MaxSpeed/MaxSpeedSlider" to="Control" method="_on_max_speed_slider_value_changed"]
+[connection signal="pressed" from="Control/ColorRect/MarginContainer/VBoxContainer/Button" to="Control" method="_on_button_pressed"]
