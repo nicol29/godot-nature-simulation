@@ -63,6 +63,7 @@ text = "Cohesion
 
 [node name="CohesionSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/Cohesion"]
 layout_mode = 2
+focus_mode = 0
 theme_override_constants/center_grabber = 0
 theme_override_constants/grabber_offset = 0
 max_value = 10.0
@@ -79,6 +80,7 @@ text = "Alignment
 
 [node name="AlignmentSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/Alignment"]
 layout_mode = 2
+focus_mode = 0
 max_value = 10.0
 value = 1.0
 
@@ -92,6 +94,7 @@ text = "Seperation"
 
 [node name="SeparationSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/Separation"]
 layout_mode = 2
+focus_mode = 0
 max_value = 10.0
 value = 1.0
 
@@ -106,11 +109,13 @@ text = "Max Speed
 
 [node name="MaxSpeedSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/MaxSpeed"]
 layout_mode = 2
+focus_mode = 0
 max_value = 10.0
 value = 1.0
 
 [node name="Button" type="Button" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+focus_mode = 0
 theme_override_font_sizes/font_size = 12
 text = "Reset Values
 "
@@ -270,7 +275,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Panel" type="Panel" parent="Control/ColorRect2/MarginContainer/VBoxContainer/HBoxContainer2"]
-custom_minimum_size = Vector2(36, 18)
+custom_minimum_size = Vector2(94, 18)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -290,7 +295,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 8
-text = "SHIFT
+text = "SPACEBAR
 "
 
 [node name="Label" type="Label" parent="Control/ColorRect2/MarginContainer/VBoxContainer/HBoxContainer2"]
@@ -305,7 +310,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Panel" type="Panel" parent="Control/ColorRect2/MarginContainer/VBoxContainer/HBoxContainer3"]
-custom_minimum_size = Vector2(44, 18)
+custom_minimum_size = Vector2(36, 18)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -325,7 +330,7 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 8
-text = "CTRL
+text = "SHIFT
 "
 
 [node name="Label" type="Label" parent="Control/ColorRect2/MarginContainer/VBoxContainer/HBoxContainer3"]
