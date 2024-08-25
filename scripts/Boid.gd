@@ -35,6 +35,8 @@ func _ready():
 
 
 func _process(delta):
+	max_speed = GameSettings.max_speed
+	
 	should_calculate = true
 	# pause = false
 	if flock and count_neighbors:

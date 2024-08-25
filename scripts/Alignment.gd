@@ -11,6 +11,9 @@ func _ready():
 
 
 func calculate():
+	# Setting the behavior's weight using the singleton's game settings
+	self.weight = GameSettings.alignment_weight
+	
 	desired = Vector3.ZERO
 	
 	for i in boid.neighbors.size():

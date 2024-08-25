@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://crfk4lru4iosi"]
+[gd_scene load_steps=2 format=3 uid="uid://crfk4lru4iosi"]
+
+[ext_resource type="Script" path="res://scripts/UserInterface.gd" id="1_f7lrk"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -11,6 +13,7 @@ offset_top = 99.0
 offset_right = 276.0
 offset_bottom = -238.0
 grow_vertical = 2
+script = ExtResource("1_f7lrk")
 
 [node name="ColorRect" type="ColorRect" parent="Control"]
 layout_mode = 1
@@ -38,55 +41,64 @@ theme_override_constants/margin_right = 20
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
+[node name="Cohesion" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/ColorRect/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Control/ColorRect/MarginContainer/VBoxContainer/Cohesion"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Cohesion
 "
 
-[node name="HSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/VBoxContainer"]
+[node name="CohesionSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/Cohesion"]
 layout_mode = 2
 theme_override_constants/center_grabber = 0
 theme_override_constants/grabber_offset = 0
 max_value = 10.0
+value = 1.0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
+[node name="Alignment" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/ColorRect/MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="Label" type="Label" parent="Control/ColorRect/MarginContainer/VBoxContainer/Alignment"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Alignment
 "
 
-[node name="HSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/VBoxContainer2"]
+[node name="AlignmentSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/Alignment"]
 layout_mode = 2
 max_value = 10.0
+value = 1.0
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
+[node name="Seperation" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/ColorRect/MarginContainer/VBoxContainer/VBoxContainer3"]
+[node name="Label" type="Label" parent="Control/ColorRect/MarginContainer/VBoxContainer/Seperation"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Seperation"
 
-[node name="HSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/VBoxContainer3"]
+[node name="SeperationSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/Seperation"]
 layout_mode = 2
 max_value = 10.0
+value = 1.0
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
+[node name="MaxSpeed" type="VBoxContainer" parent="Control/ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Control/ColorRect/MarginContainer/VBoxContainer/VBoxContainer4"]
+[node name="Label" type="Label" parent="Control/ColorRect/MarginContainer/VBoxContainer/MaxSpeed"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "Speed
+text = "Max Speed
 "
 
-[node name="HSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/VBoxContainer4"]
+[node name="MaxSpeedSlider" type="HSlider" parent="Control/ColorRect/MarginContainer/VBoxContainer/MaxSpeed"]
 layout_mode = 2
 max_value = 10.0
+value = 1.0
+
+[connection signal="value_changed" from="Control/ColorRect/MarginContainer/VBoxContainer/Cohesion/CohesionSlider" to="Control" method="_on_cohesion_slider_value_changed"]
+[connection signal="value_changed" from="Control/ColorRect/MarginContainer/VBoxContainer/Alignment/AlignmentSlider" to="Control" method="_on_alignment_slider_value_changed"]
+[connection signal="value_changed" from="Control/ColorRect/MarginContainer/VBoxContainer/Seperation/SeperationSlider" to="Control" method="_on_seperation_slider_value_changed"]
+[connection signal="value_changed" from="Control/ColorRect/MarginContainer/VBoxContainer/MaxSpeed/MaxSpeedSlider" to="Control" method="_on_max_speed_slider_value_changed"]

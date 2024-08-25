@@ -11,6 +11,9 @@ func _ready():
 
 
 func calculate():
+	# Setting the behavior's weight using the singleton's game settings
+	self.weight = GameSettings.cohesion_weight
+	
 	force = Vector3.ZERO
 	center_of_mass = Vector3.ZERO
 	for i in boid.neighbors.size():

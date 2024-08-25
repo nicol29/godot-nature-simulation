@@ -9,6 +9,9 @@ func _ready():
 
 
 func calculate():
+	# Setting the behavior's weight using the singleton's game settings
+	self.weight = GameSettings.separation_weight
+	
 	force = Vector3.ZERO
 	
 	for i in boid.neighbors.size():

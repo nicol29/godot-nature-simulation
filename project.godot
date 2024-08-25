@@ -15,6 +15,10 @@ run/main_scene="res://scenes/environment.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameSettings="*res://singleton/GameSettings.gd"
+
 [display]
 
 window/stretch/mode="canvas_items"
