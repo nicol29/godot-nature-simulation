@@ -34,9 +34,3 @@ func _think():
 
 func _exit():
 	pass
-
-func constrain_to_water_level():
-	# Constrain the y-coordinate to the water level
-	var position = boid.global_transform.origin
-	position.y = -0.25
-	boid.global_transform.origin = position

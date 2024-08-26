@@ -9,7 +9,7 @@ extends CharacterBody3D
 func _ready():
 	# Lock the mouse
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
+	
 func _input(event):
 	if event is InputEventMouseMotion and not Input.is_action_pressed("break_mouse"):
 		_rotate_camera(event)

@@ -10,7 +10,6 @@ class_name Boid extends CharacterBody3D
 @export var damping = 0.1
 @export var pause = false
 
-
 var behaviors = [] 
 var count_neighbors = false
 var neighbors = [] 
@@ -20,6 +19,7 @@ var should_calculate = false
 
 var is_touching_water: bool
 var did_spawn_in_lake: bool
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,7 +33,6 @@ func _ready():
 			behaviors.push_back(child)
 			child.set_process(child.enabled)
 
-
 func _process(delta):
 	max_speed = GameSettings.max_speed
 	
@@ -43,7 +42,6 @@ func _process(delta):
 		count_neighbors_simple()
 	
 	is_touching_water = detect_if_touching_water()
-
 
 func _physics_process(delta):
 	# pause = true
@@ -73,7 +71,7 @@ func _physics_process(delta):
 			
 			var smoothed_direction = lerp(-global_transform.basis.z, vel, 0.1)
 			look_at(global_transform.origin - vel.normalized(), Vector3.UP)
-	
+
 func count_neighbors_simple():
 	neighbors.clear()
 	for i in flock.boids.size():
@@ -110,12 +108,6 @@ func arrive_force(target:Vector3, slowingDistance:float):
 func set_enabled_all(enabled):
 	for i in behaviors.size():
 		behaviors[i].enabled = enabled
-		
-func update_weights(weights):
-	for behavior in weights:
-		var b = get_node(behavior)
-		if b: 
-			b.weight = weights[behavior]
 
 func calculate():
 	var force_acc = Vector3.ZERO	
@@ -133,7 +125,6 @@ func calculate():
 				behaviors_active += " Limiting force"
 				break
 	return force_acc
-
 
 func detect_if_touching_water() -> bool:
 	# Extend a ray from the duck's pos to check if it is in water

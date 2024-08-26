@@ -48,6 +48,7 @@ func spawn_ducks():
 			spawn_point = Utility.get_random_position_inside_circle(center.global_transform.origin, ShoreRadiusSpawn)
 		
 			will_spawn_in_lake = false
+		
 		# Creating an instance of duck and setting its position in global space
 		var duck_instance = duck.instantiate()
 		duck_instance.did_spawn_in_lake = will_spawn_in_lake
@@ -61,13 +62,4 @@ func spawn_ducks():
 		else:
 			boid = duck_instance.find_child("Boid", true)
 
-		boids.push_back(boid)		
-		
-		#var constrain = boid.get_node("Constrain")
-		#if constrain:
-			## constrain.center_path = center_path
-			#constrain.center = center
-			#constrain.radius = radius
-		
-	
-
+		boids.push_back(boid)

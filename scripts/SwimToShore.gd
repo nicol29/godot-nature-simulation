@@ -57,11 +57,3 @@ func _think():
 
 func _exit():
 	boid.set_enabled(boid.get_node("Seek"), false)
-
-func constrain_to_water_level():
-	# Constrain the y-coordinate to the water level
-	var position = boid.global_transform.origin
-	position.y = -0.25
-	boid.global_transform.origin = position
-
-

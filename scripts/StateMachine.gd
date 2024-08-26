@@ -1,10 +1,8 @@
 class_name StateMachine extends Node
 
 var initial_state
-@export var global_state_path:NodePath
 
 var current_state:State
-var global_state:State
 var previous_state:State
 var state_change_timer
 
@@ -18,13 +16,6 @@ func _ready():
 	if initial_state:
 		current_state = initial_state
 		current_state.call_deferred("_enter")
-		#current_state._enter()
-		
-	if global_state_path:
-		global_state = get_node(global_state_path)
-		# Ready may not have been called!
-		global_state.call_deferred("_enter")
-		#current_state._enter()
 	
 	# Set up the timer for random state change
 	state_change_timer = Timer.new()
@@ -37,8 +28,6 @@ func _ready():
 func _process(delta):
 	if current_state:
 		current_state._think()
-	if global_state:
-		global_state._think()
 
 func assign_initial_state():
 	if boid.did_spawn_in_lake:
