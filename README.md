@@ -31,15 +31,20 @@ To run, fork this repository, download and import the project into Godot and hit
 
 # How it works
 
-The Flock class begins by spawning ducks either on the lake or on 1 of 3 shore locations. The ducks are then given random states based on whether they are on land or not, the game uses weights that favor the most of the ducks to be in the pond. Inside these states lies logic that turns on/off certain behaviors (wander/cohesion/constrain) in the duck instance so if a duck is sleeping all flocking behaviors are disabled or if a duck needs to rejoin the flock sac rules are re-enabled. State changes are handled mostly at random inside the StateMachine class, it uses a timer to determine when a duck should change state or not. Some states change when conditions are met such as when a duck arrives within distance to a location, the appropriate state is then chosen.
+The Flock class begins by spawning ducks either on the lake or on 1 of 3 shore locations. The ducks are then given random states based on whether they are on land or not, the game uses weights that favor the most of the ducks to be in the pond. Inside these states lies logic that turns on/off certain behaviors (wander/cohesion/constrain) in the duck instance so if a duck is sleeping all flocking behaviors are disabled or if a duck needs to rejoin the flock SAC rules are re-enabled. State changes are handled mostly at random inside the StateMachine class, it uses a timer to determine when a duck should change state or not. Some states change when conditions are met such as when a duck arrives within distance to a location, the appropriate state is then chosen.
 
-The possibility to adjust the weight of behaviours is facilitated through a graphical user interface. This implemention uses a combination of signals and a singelton pattern (autoload feature in Godot) to achieve this. Each slider holds a corresponding signal which when changed emits a signal with the new value to a subscribed script. The singleton pattern is used here as it acts as a centralised location to store these individual weight values allowing any script to access it's information conveniently from anywhere. Inside each behaviour class the weight belonging to that class is set to the weight stored in the global script. `self.weight = GameSettings.cohesion_weight` This instantly reflects in the behavior of the ducks depending on which parameter is modified.
+The possibility to adjust the weight of behaviors is facilitated through a graphical user interface. This implemention uses a combination of signals and a singelton pattern (autoload feature in Godot) to achieve this. Each slider holds a corresponding signal which when changed emits a signal with the new value to a subscribed script. The singleton pattern is used here as it acts as a centralised location to store these individual weight values, allowing any script to access it's information conveniently from anywhere. Within each behavior class, the weight is assigned based on the value stored in the global script. e.g. `self.weight = GameSettings.cohesion_weight` immediately affects the ducks' behavior based on the modified parameter.
 
-Sounds are also chosen at random by a script attached to a 3D node. A timer is set on repeat and at random intervals it to cycles through a list of sounds attached as child nodes. Ambient park noise is played in the background on loop to add to the immersion.
-
+Sound effects are randomly selected by a script attached to a 3D node. A repeating timer triggers at random intervals, cycling through a list of child sound nodes. To add to the immersion, ambient park noises are continuously played as the background noise.
 
 # What did I learn?
 
+- Became more comfortable with boid's and their implementation by studying the example behaviors from this [reference](https://github.com/skooter500/miniature-rotary-phone/tree/main)
+- The importance of using a State Machine to keep the logic for an object's behaviors manageable and organised.
+- Navigating within Godot's editor feels more natural as I've come from Unity's game engine.
+- Creating user interfaces and learning about the different control nodes.
+- Learned how to sculpt within Blender after using it for the first time to create the terrain's mesh.
+- How to implement the Singleton Pattern in Godot
 
 # List of Classes
 
