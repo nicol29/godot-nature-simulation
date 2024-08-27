@@ -18,13 +18,13 @@ func calculate():
 	
 	for i in boid.neighbors.size():
 		var other = boid.neighbors[i]
-		var other_direction = other.global_transform.basis.z
+		var other_direction = other.global_transform.basis.z.normalized()
 		other_direction.y = 0
 		desired += other_direction
 	if boid.neighbors.size() > 0:
 		desired = desired / boid.neighbors.size()
 		desired.y = 0
-		force = desired - boid.global_transform.basis.z
+		force = desired - boid.global_transform.basis.z.normalized()
 		force.y = 0
 	return force
 

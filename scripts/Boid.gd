@@ -69,8 +69,8 @@ func _physics_process(delta):
 			set_velocity(vel)
 			move_and_slide()
 			
-			var smoothed_direction = lerp(-global_transform.basis.z, vel, 0.1)
-			look_at(global_transform.origin - vel.normalized(), Vector3.UP)
+			if vel.length() > 0.1:
+				look_at(global_transform.origin - vel, Vector3.UP)
 
 func count_neighbors_simple():
 	neighbors.clear()
@@ -112,18 +112,23 @@ func set_enabled_all(enabled):
 func calculate():
 	var force_acc = Vector3.ZERO	
 	var behaviors_active = ""
+	
 	for i in behaviors.size():
 		if behaviors[i].enabled:
 			var f = behaviors[i].calculate() * behaviors[i].weight
+			
 			if is_nan(f.x) or is_nan(f.y) or is_nan(f.z):
 				print(str(behaviors[i]) + " is NAN")
 				f = Vector3.ZERO
+			
 			behaviors_active += behaviors[i].name + ": " + str(round(f.length())) + " "
 			force_acc += f 
+			
 			if force_acc.length() > max_force:
 				force_acc = force_acc.limit_length(max_force)
 				behaviors_active += " Limiting force"
 				break
+	
 	return force_acc
 
 func detect_if_touching_water() -> bool:

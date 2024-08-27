@@ -33,4 +33,5 @@ func _think():
 		duck_animation_player.speed_scale = clamp(current_speed, 0.2, 1.0)
 
 func _exit():
-	pass
+	# Reset duck's animation speed to 1 when exiting state
+	duck_animation_player.speed_scale = 1.0
