@@ -21,6 +21,8 @@ GameSettings="*res://singleton/GameSettings.gd"
 
 [display]
 
+window/size/viewport_width=1300
+window/size/viewport_height=720
 window/stretch/mode="canvas_items"
 
 [dotnet]
