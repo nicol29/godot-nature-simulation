@@ -1,6 +1,6 @@
-# Project Title
+# Duck Simulator X
 
-Name: Duck Simulator X
+Name: Nicolas Condrea
 
 Student Number: C18424946
 
@@ -45,6 +45,11 @@ Sound effects are randomly selected by a script attached to a 3D node. A repeati
 - Creating user interfaces and learning about the different control nodes.
 - Learned how to sculpt within Blender after using it for the first time to create the terrain's mesh.
 - How to implement the Singleton Pattern in Godot
+
+# Research
+
+Research was done in St. Anne's Park in Raheny, Dublin. 
+Public access [link](https://www.dropbox.com/scl/fo/l2our1zztiqz2qapz3ieu/AO5yvtlMLwNSTPveJr0-K9g?rlkey=p8ky60lt3ljsvktoakkfgtz2c&st=oqispwxs&dl=0) to videos
 
 # List of Classes
 
