@@ -1,10 +1,10 @@
 # Duck Simulator X
 
-Name: Nicolas Condrea
+ <!--Name: Nicolas Condrea-->
 
-Student Number: C18424946
+ <!--Student Number: C18424946-->
 
-Class Group: TU-857
+ <!--Class Group: TU-857-->
 
 
 # Description
